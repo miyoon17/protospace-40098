@@ -28,6 +28,7 @@ class PrototypesController < ApplicationController
   def edit
   end
 
+
  def update
   if @prototype.update(prototype_params)
     redirect_to prototype_path(@prototype)
@@ -57,7 +58,7 @@ end
   def move_to_index
     @prototype = Prototype.find(params[:id])
     unless current_user == @prototype.user.id
-      redirect_to action: :index
+      redirect_to root_path unless current_user == @prototype.user
     end
   end
 
